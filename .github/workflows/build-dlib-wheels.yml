@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.13', '3.14']
+        python-version: ['3.9', '3.10', '3.11', '3.12', '3.13']
     
     steps:
       - uses: actions/checkout@v4
@@ -76,22 +76,7 @@ jobs:
           tag_name: v${{ steps.version.outputs.dlib_version }}-build.${{ github.run_number }}
           name: dlib ${{ steps.version.outputs.dlib_version }} Wheels (Build ${{ github.run_number }})
           body: |
-            ## dlib Wheels for Windows (64-bit)
-            
-            Pre-compiled dlib wheels for Python 3.13.x and 3.14.x
-            
-            ### Compatibility
-            - `cp313` wheel works with **any Python 3.13.x** version (3.13.0, 3.13.1, etc.)
-            - `cp314` wheel works with **any Python 3.14.x** version (3.14.0, 3.14.1, etc.)
-            
-            ### Installation
-            Download the appropriate wheel for your Python version:
-            ```bash
-            # For Python 3.13.x
-            pip install dlib-<version>-cp313-cp313-win_amd64.whl
-            
-            # For Python 3.14.x
-            pip install dlib-<version>-cp314-cp314-win_amd64.whl
+            ## dlib Wheels for Python 3.9.** - 3.12.*
             ```
           files: all-wheels/*.whl
           draft: false
